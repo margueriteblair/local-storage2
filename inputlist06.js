@@ -11,11 +11,12 @@ function addNewName() {
         localStorage.setItem("lsStudentNames", JSON.stringify(arrayOfNames))
         parsedArrayNames = JSON.parse(localStorage.getItem("lsStudentNames"))
 
+
     } else {
         alert (`Incorrect input`)
     }
 
-    let listTag = `<ul>`
+    let listTag = `<ul style='list-style-type:none'>`
     for (let i = 0; i < parsedArrayNames.length; i++) {
         listTag = listTag + `<li>${parsedArrayNames[i]}</li>`
     }
@@ -24,3 +25,4 @@ function addNewName() {
 }
 
 localStorage.getItem("lsStudentNames")
+document.getElementById("printedNames").innerText = localStorage.getItem("lsStudentNames")
