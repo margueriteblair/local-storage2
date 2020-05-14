@@ -7,10 +7,12 @@
 
 let cards = {
     deck: [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10],
+    
     player1Cards: [],
     player1CardsTotal: 0,
-    dealer: []
 
+    dealerCards: [],
+    dealerCardsTotal: 0
 }
 
 let cardMethods = {
@@ -32,7 +34,6 @@ let cardMethods = {
     totalPlayer1Cards: function() {
         for (let i = 0; i < cards.player1Cards.length; i++) {
             cards.player1CardsTotal += cards.player1Cards[i]
-        
     }
 },
     hitMe: function() {
@@ -45,7 +46,15 @@ let cardMethods = {
         }
             html = html + `</ul>`
             document.getElementById("player1cards").innerHTML = html;
-        this.totalPlayer1Cards();
+            cardMethods.totalPlayer1Cards();
+    },
+    stand: function() {
+        
+    },
+    initialDealerDeal: function() {
+        for (let i = 0; i < 2; i++) {
+            cards.dealer.push((cards.deck.splice(Math.random()*cards.deck.length),1).pop())
+        }
     }
 }
 document.getElementById("title").innerText = "The House Always Wins, but go ahead"
@@ -53,3 +62,4 @@ cardMethods.initialDeal();
 cardMethods.totalPlayer1Cards();
 document.getElementById("player1cardsTotal").innerText = cards.player1CardsTotal;
 document.getElementById("player1Name").innerText = prompt("What is your name?");
+cardMethods.totalPlayer1Cards();
