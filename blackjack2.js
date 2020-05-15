@@ -32,6 +32,8 @@ let cards = {
             cards.busted = 1;
             setTimeout(function() { alert(`Busted, give us your money!`); }, 500);
             cards.player1Cards = [];
+        } else if (cards.player1Cards === 21) {
+            //chill out for a bit
         }
         cards.player1CardsTotal = 0; 
   
@@ -80,10 +82,23 @@ let cards = {
   
       },
       newGame: function() {
-          //clear the DOM
-          cards.player1Cards = []; 
-          this.initialDeal();
-      }
-      };
+          cards.player1Cards = [];
+            this.initialDeal();
+      },
+      stand: function() {
+        this.dealerPlayLogic();
+      },
+      dealerPlayLogic: function() {
+
+        setTimeout(function(){
+            if (cards.player1CardsTotal === 21) {
+                while (cards.dealerCardsTotal <= 21) {
+                    cards.dealerCards.push(cards.deck.splice(Math.floor(Math.random()* cards.deck.length),1).pop())
+                    this.totalDealerCards();
+                }
+            }
+        })
+    }
+};
     //call functions
     cardMethod.initialDeal();
