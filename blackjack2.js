@@ -22,6 +22,7 @@ let cards = {
       
   
       totalPlayer1Cards: function () {
+        cards.player1CardsTotal = 0; 
         for (let i = 0; i < cards.player1Cards.length; i++) {
           cards.player1CardsTotal += cards.player1Cards[i];
   
@@ -35,7 +36,7 @@ let cards = {
         } else if (cards.player1Cards === 21) {
             //chill out for a bit
         }
-        cards.player1CardsTotal = 0; 
+
   
       },
 
@@ -51,17 +52,15 @@ let cards = {
   
   
       totalDealerCards: function() {
+        cards.dealerCardsTotal = 0;
         for (let i = 0; i < cards.dealerCards.length; i++) {
           cards.dealerCardsTotal += cards.dealerCards[i];
         }
         document.getElementById('dealerCardsTotal').innerText = cards.dealerCardsTotal;
-        cards.dealerCardsTotal = 0;
 
-        // if (cards.dealerCardsTotal === 21) {
-        //     alert(`BUSTED! Dealer wins this round.`);
-        // } else if (cards.dealerCardsTotal < 21 && cards.dealerCardsTotal > cards.player1CardsTotal) {
-        //     alert(`BUSTED! Dealer wins this round.`);
-        // }
+        if (cards.dealerCardsTotal === 21) {
+            alert(`BUSTED! Dealer wins this round.`);
+        }
       },
   
       //Hit and stand buttons clicked from player 1
@@ -106,8 +105,30 @@ let cards = {
         // }, 1000)
         this.initialDealerCards();
         this.updateDealerCards();
+        if (cards.dealerCardsTotal > cards.player1CardsTotal && cards.dealerCardsTotal < 21) {
+            setTimeout(function() {
+                alert(`Busted! Dealer is the winner!`)
+            }, 1000)
+        } else if (cards.dealerCardsTotal < 21) {
+            cards.dealerCards.push(cards.deck.splice(Math.floor(Math.random()* cards.deck.length),1).pop())
+            this.updateDealerCards()
+        }
+        // setTimeout(function(){ this.newDealerHit() }, 1000)
     },
     updateDealerCards: function() {
+        let html = `<ul>`;
+        for (let i = 0; i < cards.dealerCards.length; i++) {
+          html += `<li>${cards.dealerCards[i]}</li>`
+  
+        }
+        html += `</ul>`;
+        document.getElementById('dealerCards').innerHTML = html;
+        this.totalDealerCards();
+    },
+    newDealerHit: function() {
+        if (cards.dealerCardsTotal < 21) {
+            cards.dealerCards.push(cards.deck.splice(Math.floor(Math.random()* cards.deck.length),1).pop())
+        }
         let html = `<ul>`;
         for (let i = 0; i < cards.dealerCards.length; i++) {
           html += `<li>${cards.dealerCards[i]}</li>`
