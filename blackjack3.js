@@ -33,7 +33,6 @@ let cardMethods = {
         cards.player1CardTotals = 0;
         for (let i = 0; i < player1Cards.length; i++) {
             cards.player1CardsTotal += parseInt(cards.player1Cards[i][0])
-            console.log(cards.player1CardsTotal)
         }
         document.getElementById("player1CardsTotal").innerText = cards.player1CardTotals
     },
@@ -60,10 +59,9 @@ let cardMethods = {
     totalDealerCards: function() {
         cards.dealerCardsTotals = 0;
         for (let i = 0; i < cards.dealerCards.length; i++) {
-            cards.dealerCardsTotal = cards.dealerCardsTotal + parseInt(cards.dealerCards[i][0])
+            cards.dealerCardsTotal += parseInt(cards.dealerCards[i][0])
         }
         document.getElementById("dealerCardsTotal").innerText = cards.dealerCardsTotal;
     }
 }
 
-console.log(cards.fullDeck)
