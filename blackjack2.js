@@ -55,7 +55,13 @@ let cards = {
           cards.dealerCardsTotal += cards.dealerCards[i];
         }
         document.getElementById('dealerCardsTotal').innerText = cards.dealerCardsTotal;
-  
+        cards.dealerCardsTotal = 0;
+
+        // if (cards.dealerCardsTotal === 21) {
+        //     alert(`BUSTED! Dealer wins this round.`);
+        // } else if (cards.dealerCardsTotal < 21 && cards.dealerCardsTotal > cards.player1CardsTotal) {
+        //     alert(`BUSTED! Dealer wins this round.`);
+        // }
       },
   
       //Hit and stand buttons clicked from player 1
@@ -90,14 +96,26 @@ let cards = {
       },
       dealerPlayLogic: function() {
 
-        setTimeout(function(){
-            if (cards.player1CardsTotal === 21) {
-                while (cards.dealerCardsTotal <= 21) {
-                    cards.dealerCards.push(cards.deck.splice(Math.floor(Math.random()* cards.deck.length),1).pop())
-                    this.totalDealerCards();
-                }
-            }
-        })
+        // setTimeout(function(){
+        //     if (cards.player1CardsTotal <= 21) {
+        //         while (cards.dealerCardsTotal <= 21) {
+        //             cards.dealerCards.push(cards.deck.splice(Math.floor(Math.random()* cards.deck.length),1).pop())
+        //             // this.totalDealerCards();
+        //         }
+        //     }
+        // }, 1000)
+        this.initialDealerCards();
+        this.updateDealerCards();
+    },
+    updateDealerCards: function() {
+        let html = `<ul>`;
+        for (let i = 0; i < cards.dealerCards.length; i++) {
+          html += `<li>${cards.dealerCards[i]}</li>`
+  
+        }
+        html += `</ul>`;
+        document.getElementById('dealerCards').innerHTML = html;
+        this.totalDealerCards();
     }
 };
     //call functions
