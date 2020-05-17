@@ -89,6 +89,9 @@ let cards = {
       newGame: function() {
           cards.player1Cards = [];
             this.initialDeal();
+        cards.dealerCards = [];
+        this.updateDealerCards();
+        // console.log(cards.dealerCards);
       },
       stand: function() {
         this.dealerPlayLogic();
@@ -105,15 +108,27 @@ let cards = {
         // }, 1000)
         this.initialDealerCards();
         this.updateDealerCards();
-        if (cards.dealerCardsTotal > cards.player1CardsTotal && cards.dealerCardsTotal < 21) {
+        if (cards.dealerCardsTotal > cards.player1CardsTotal && cards.dealerCardsTotal <= 21) {
             setTimeout(function() {
                 alert(`Busted! Dealer is the winner!`)
             }, 1000)
         } else if (cards.dealerCardsTotal < 21) {
-            cards.dealerCards.push(cards.deck.splice(Math.floor(Math.random()* cards.deck.length),1).pop())
-            this.updateDealerCards()
+            // setTimeout(function(){
+            while (cards.dealerCardsTotal < cards.player1CardsTotal) {
+                cards.dealerCards.push(cards.deck.splice(Math.floor(Math.random()* cards.deck.length),1).pop())
+                this.updateDealerCards()
+            }
+
+            // }, 1000)
         }
-        // setTimeout(function(){ this.newDealerHit() }, 1000)
+        setTimeout(function(){
+            if (cards.dealerCardsTotal > 21 && cards.player1CardsTotal < 21) {
+                alert(`Congratulation! You are the winner!`)
+            } else if (cards.dealerCardsTotal < 21 && cards.dealerCardsTotal > cards.player1CardsTotal) {
+                alert(`Busted! Dealer is the winner!`)
+            }
+        }, 500)
+
     },
     updateDealerCards: function() {
         let html = `<ul>`;
