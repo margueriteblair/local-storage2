@@ -3,7 +3,7 @@ hit.id = "hit"
 hit.textContent = "Hit Me"
 document.body.appendChild(hit)
 hit.onclick = function() {
-    
+
 }
 
 const cardDeck = [
@@ -40,4 +40,15 @@ const cardDeck = [
         img: "images/2S.png"
     },
 ]
+
+let grid = document.queryCommandValue("#all-cards")
+
+function showDeck() {
+    for (let i = 0; i < cardDeck.length; i++) {
+        let card = document.createElement("img")
+        card.setAttribute("src", cardDeck[i].img)
+        card.setAttribute("data-id", i)
+        grid.appendChild(card)
+    }
+}
 
