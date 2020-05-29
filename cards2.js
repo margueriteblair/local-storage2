@@ -146,9 +146,10 @@ const cardDeck = [
 ]
 cardDeck.sort(() => .5 - Math.random())
 
-let grid = document.querySelector("#all-cards")
 let player1Cards = [];
 let player1CardTotals = 0;
+let dealerCards = [];
+let dealerCardTotals = 0;
 
 // function showDeck() {
 //     for (let i = 0; i < cardDeck.length; i++) {
@@ -172,13 +173,15 @@ let player1CardTotals = 0;
 // showDeck()
 
 function initialDeal() {
+    // cardDeck = [...cardDeck];
     for (let i = 0; i < 2; i++) {
         player1Cards.push(cardDeck[i].value)
-        cardDeck.splice((cardDeck[i]),1)
         let faceCards = document.createElement("img")
         faceCards.class = "cards"
         faceCards.setAttribute("src", cardDeck[i].img)
+        console.log(cardDeck[i].img)
         document.getElementById("player1Cards").appendChild(faceCards);
+        cardDeck.splice((cardDeck[i]),1)
         
     }
     totalPlayer1Cards()
@@ -187,11 +190,11 @@ function initialDeal() {
 function hitMe() {
     for (let i = 0; i < 1; i++) {
         player1Cards.push(cardDeck[i].value)
-        cardDeck.splice((cardDeck[i]),1)
         let faceCards = document.createElement('img')
         faceCards.class = "cards"
         faceCards.setAttribute("src", cardDeck[i].img)
         document.getElementById("player1Cards").appendChild(faceCards);
+        cardDeck.splice((cardDeck[i]),1)
         totalPlayer1Cards();
     }
 }
@@ -201,13 +204,43 @@ function totalPlayer1Cards() {
     for (let i = 0; i < player1Cards.length; i++) {
         player1CardTotals += player1Cards[i]
     }
-    console.log(player1CardTotals)
     document.getElementById("player1Total").innerText = player1CardTotals;
     if (player1CardTotals > 21) {
         setTimeout(function(){
             alert(`Busted! You lose.`)
         }, 500)
     }
+}
+
+function stand() {
+    for (let i = 0; i < 2; i++) {
+        dealerCards.push(cardDeck[i].value)
+        let faceCards = document.createElement("img");
+        faceCards.class = "cards"
+        faceCards.setAttribute("src", cardDeck[i].img)
+        document.getElementById("dealerCards").appendChild(faceCards);
+        cardDeck.splice((cardDeck[i]),1)
+        totalDealerCards();
+    }
+
+}
+// for (let i = 0; i < 2; i++) {
+//     player1Cards.push(cardDeck[i].value)
+//     let faceCards = document.createElement("img")
+//     faceCards.class = "cards"
+//     faceCards.setAttribute("src", cardDeck[i].img)
+//     console.log(cardDeck[i].img)
+//     document.getElementById("player1Cards").appendChild(faceCards);
+//     cardDeck.splice((cardDeck[i]),1)
+    
+// }
+
+function totalDealerCards() {
+    let dealerCardTotals = 0;
+    for (let i = 0; i < dealerCards.length; i++) {
+        dealerCardTotals += dealerCards[i];
+    }
+    document.getElementById("dealerTotal").innerText = dealerCardTotals;
 }
 
 

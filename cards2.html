@@ -11,20 +11,20 @@
     <h2>Welcome to BlackJack!</h2>
 
     <button class="button" onclick="hitMe()">Hit Me</button>
-    <button class="button">Stand</button>
+    <button class="button" onclick="stand()">Stand</button>
     <button class="button" onclick="initialDeal()">New Game</button> <br> <br>
 
 <div id="player1Cards">
     <img id="deckImage" src="images/red_back.png">
-
 </div>
     <div>Player 1 Card Totals:</div>
     <div id="player1Total"></div>
 
-    <div id="all-cards"></div>
-
-    <div class="player1">Player 1 Totals:</div>
-    <div class="player1" id="results"></div>
+    <div id="dealerCards">
+    <!-- <img id="deckImage" src="images/red_back.png"> -->
+    </div>
+    <div>Dealer Totals:</div>
+    <div id="dealerTotal"></div>
 
 </body>
 </html>
