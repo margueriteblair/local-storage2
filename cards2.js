@@ -175,10 +175,25 @@ function initialDeal() {
     for (let i = 0; i < 2; i++) {
         player1Cards.push(cardDeck[i].value)
         cardDeck.splice((cardDeck[i]),1)
-        cards = document.getElementsByClassName("cards")
-        cards.innerHTML = `src=${cardDeck[i].img}`
+        let faceCards = document.createElement("img")
+        faceCards.class = "cards"
+        faceCards.setAttribute("src", cardDeck[i].img)
+        document.getElementById("player1Cards").appendChild(faceCards);
+        
     }
     totalPlayer1Cards()
+}
+
+function hitMe() {
+    for (let i = 0; i < 1; i++) {
+        player1Cards.push(cardDeck[i].value)
+        cardDeck.splice((cardDeck[i]),1)
+        let faceCards = document.createElement('img')
+        faceCards.class = "cards"
+        faceCards.setAttribute("src", cardDeck[i].img)
+        document.getElementById("player1Cards").appendChild(faceCards);
+        totalPlayer1Cards();
+    }
 }
 
 function totalPlayer1Cards() {
