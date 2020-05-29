@@ -1,6 +1,25 @@
-.all-cards {
+#all-cards {
     display: flex;
     flex-wrap: wrap;
-    height: 400px;
-    width: 300px;
+    height: 1056px;
+    width: 100%;
 }
+
+.player1 {
+    font-size: 100px;
+}
+
+#pileImg {
+    margin-left: 70px;
+    align-items: right;
+}
+
+img {
+    width: 13%
+}
+
+.button {
+    margin-top: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/* 691 × 1056 is the original card size img*/

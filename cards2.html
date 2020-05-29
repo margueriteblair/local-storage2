@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack 3</title>
     <link rel="stylesheet" href="cards2.css">
+    <script src="cards2.js"></script>
 </head>
 <body>
+    <h2>Welcome to BlackJack!</h2> <br>
+
+    <button class="button" onclick="hitMe()">Hit Me</button>
+    <button class="button">Stand</button>
+    <button class="button" onclick="initialDeal()">New Game</button> <br> <br>
+
+
+    <img id="deckImage" src="images/red_back.png">
+
     <div id="all-cards"></div>
 
-    <script src="cards2.js"></script>
+    <div class="player1">Player 1 Totals:</div>
+    <div class="player1" id="results"></div>
+
 </body>
 </html>
