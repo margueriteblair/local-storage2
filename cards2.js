@@ -146,38 +146,54 @@ const cardDeck = [
 ]
 cardDeck.sort(() => .5 - Math.random())
 
-let hit = document.createElement("button")
-hit.id = "hit"
-hit.textContent = "Hit Me"
-document.body.appendChild(hit)
-hit.onclick = function() {
-
-}
 let grid = document.querySelector("#all-cards")
 let player1Cards = [];
 let player1CardTotals = 0;
 
-function showDeck() {
-    for (let i = 0; i < cardDeck.length; i++) {
-        let card = document.createElement("img")
-        card.setAttribute("src", "images/red_back.png")
-        card.setAttribute("data-id", i)
-        card.addEventListener("click", flipcard)
-        grid.appendChild(card)
+// function showDeck() {
+//     for (let i = 0; i < cardDeck.length; i++) {
+//         let card = document.createElement("img")
+//         card.setAttribute("src", 'images/red_back.png')
+//         card.setAttribute("data-id", i)
+//         card.addEventListener("click", flipcard)
+//         grid.appendChild(card)
+//     }
+// }
+
+// function flipcard(){
+//     let cardId = this.getAttribute("data-id")
+//     player1Cards.push(cardDeck[cardId].value)
+//     this.setAttribute("src", cardDeck[cardId].img)
+
+
+// }
+
+
+// showDeck()
+
+function initialDeal() {
+    for (let i = 0; i < 2; i++) {
+        player1Cards.push(cardDeck[i].value)
+        cardDeck.splice((cardDeck[i]),1)
+        cards = document.getElementsByClassName("cards")
+        cards.innerHTML = `src=${cardDeck[i].img}`
+    }
+    totalPlayer1Cards()
+}
+
+function totalPlayer1Cards() {
+    let player1CardTotals = 0;
+    for (let i = 0; i < player1Cards.length; i++) {
+        player1CardTotals += player1Cards[i]
+    }
+    console.log(player1CardTotals)
+    document.getElementById("player1Total").innerText = player1CardTotals;
+    if (player1CardTotals > 21) {
+        setTimeout(function(){
+            alert(`Busted! You lose.`)
+        }, 500)
     }
 }
-
-function flipcard(){
-    let cardId = this.getAttribute("data-id")
-    player1Cards.push(cardDeck[cardId].value)
-    this.setAttribute("src", cardDeck[cardId].img)
-    
-
-}
-
-
-// initialDeal()
-
 
 
 
