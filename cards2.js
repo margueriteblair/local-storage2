@@ -213,15 +213,32 @@ function totalPlayer1Cards() {
 }
 
 function stand() {
-    for (let i = 0; i < 2; i++) {
-        dealerCards.push(cardDeck[i].value)
-        let faceCards = document.createElement("img");
-        faceCards.class = "cards"
-        faceCards.setAttribute("src", cardDeck[i].img)
-        document.getElementById("dealerCards").appendChild(faceCards);
-        cardDeck.splice((cardDeck[i]),1)
-        totalDealerCards();
+    initialDealerDeal()
+    if (dealerCardTotals > player1CardTotals && dealerCardTotals <= 21) {
+        setTimeout(function(){
+
+        },1000)
+    } else if (dealerCardTotals < 21) {
+        while (dealerCardTotals < player1CardTotals) {
+            dealerCards.push(cardDeck[0].value)
+            let faceCards = document.createElement("img");
+            faceCards.class = "cards"
+            faceCards.setAttribute("src", cardDeck[0].img)
+            document.getElementById("dealerCards").appendChild(faceCards);
+            dealerCards.splice(cardDeck[0], 1)
+        }
     }
+    // setTimeout(function(){
+    //     if (dealerCardTotals > 21 && player1CardTotals < 21) {
+    //         alert(`Congratulation! You are the winner!`)
+    //     } else if (dealerCardTotals < 21 && dealerCardTotals > player1CardTotals) {
+    //         alert(`Busted! Dealer is the winner!`)
+    //     } else if (player1CardTotals == 21 && dealerCardTotals !== 21) {
+    //         alert(`Congratulation! You are the winner!`)
+    //     } else if (dealerCardTotals === player1CardTotals) {
+    //         alert(`There has been a tie.`)
+    //     }
+    // }, 500)
 
 }
 // for (let i = 0; i < 2; i++) {
@@ -242,6 +259,18 @@ function totalDealerCards() {
     }
     document.getElementById("dealerTotal").innerText = dealerCardTotals;
 }
+
+function initialDealerDeal(){
+    for (let i = 0; i < 2; i++) {
+        dealerCards.push(cardDeck[i].value)
+        let faceCards = document.createElement("img");
+        faceCards.class = "cards"
+        faceCards.setAttribute("src", cardDeck[i].img)
+        document.getElementById("dealerCards").appendChild(faceCards);
+        cardDeck.splice((cardDeck[i]),1)
+        totalDealerCards();
+    }
+}   
 
 
 
