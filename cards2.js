@@ -214,43 +214,41 @@ function totalPlayer1Cards() {
 
 function stand() {
     initialDealerDeal()
-    if (dealerCardTotals > player1CardTotals && dealerCardTotals <= 21) {
+    if (parseInt(document.getElementById("dealerTotal").innerText) > parseInt(document.getElementById("player1Total").innerText) && parseInt(document.getElementById("dealerTotal").innerText) <= 21) {
         setTimeout(function(){
-
+            alert('You lose! Dealer is closer to 21.')
         },1000)
-    } else if (dealerCardTotals < 21) {
-        while (dealerCardTotals < player1CardTotals) {
+    } else if (parseInt(document.getElementById("dealerTotal").innerText) < 21 && (parseInt(document.getElementById("dealerTotal").innerText) <= parseInt(document.getElementById("player1Total").innerText))) {
+        setTimeout(function(){
+            console.log("ST0P")
             dealerCards.push(cardDeck[0].value)
             let faceCards = document.createElement("img");
             faceCards.class = "cards"
             faceCards.setAttribute("src", cardDeck[0].img)
             document.getElementById("dealerCards").appendChild(faceCards);
+            totalDealerCards()
             dealerCards.splice(cardDeck[0], 1)
-        }
-    }
-    // setTimeout(function(){
-    //     if (dealerCardTotals > 21 && player1CardTotals < 21) {
-    //         alert(`Congratulation! You are the winner!`)
-    //     } else if (dealerCardTotals < 21 && dealerCardTotals > player1CardTotals) {
-    //         alert(`Busted! Dealer is the winner!`)
-    //     } else if (player1CardTotals == 21 && dealerCardTotals !== 21) {
-    //         alert(`Congratulation! You are the winner!`)
-    //     } else if (dealerCardTotals === player1CardTotals) {
-    //         alert(`There has been a tie.`)
-    //     }
-    // }, 500)
 
+    }, 1000)
+    }
+    if (parseInt(document.getElementById("dealerTotal").innerText) > parseInt(document.getElementById("player1Total").innerText) && parseInt(document.getElementById("dealerTotal").innerText) <= 21) {
+        setTimeout(function(){
+            alert('You lose! Dealer is closer to 21.')
+        },1000)
+    } else if (parseInt(document.getElementById("dealerTotal").innerText) < 21 && (parseInt(document.getElementById("dealerTotal").innerText) <= parseInt(document.getElementById("player1Total").innerText))) {
+        setTimeout(function(){
+            console.log("ST0P")
+            dealerCards.push(cardDeck[0].value)
+            let faceCards = document.createElement("img");
+            faceCards.class = "cards"
+            faceCards.setAttribute("src", cardDeck[0].img)
+            document.getElementById("dealerCards").appendChild(faceCards);
+            totalDealerCards()
+            dealerCards.splice(cardDeck[0], 1)
+
+    }, 1000)
+    }
 }
-// for (let i = 0; i < 2; i++) {
-//     player1Cards.push(cardDeck[i].value)
-//     let faceCards = document.createElement("img")
-//     faceCards.class = "cards"
-//     faceCards.setAttribute("src", cardDeck[i].img)
-//     console.log(cardDeck[i].img)
-//     document.getElementById("player1Cards").appendChild(faceCards);
-//     cardDeck.splice((cardDeck[i]),1)
-    
-// }
 
 function totalDealerCards() {
     let dealerCardTotals = 0;
