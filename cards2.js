@@ -209,9 +209,8 @@ function stand() {
             faceCards.setAttribute("src", cardDeck[0].img)
             document.getElementById("dealerCards").appendChild(faceCards);
             totalDealerCards()
-            dealerCards.splice(cardDeck[0], 1)
-
     }, 1000) 
+    cardDeck.splice(cardDeck[0], 1)
     }
     setTimeout(function(){
         if (parseInt(document.getElementById("dealerTotal").innerText) > parseInt(document.getElementById("player1Total").innerText) && parseInt(document.getElementById("dealerTotal").innerText) <= 21) {
@@ -220,16 +219,14 @@ function stand() {
             },1000)
         } else if (parseInt(document.getElementById("dealerTotal").innerText) < 21 && (parseInt(document.getElementById("dealerTotal").innerText) <= parseInt(document.getElementById("player1Total").innerText))) {
             setTimeout(function(){
-                console.log("ST0P")
                 dealerCards.push(cardDeck[0].value)
                 let faceCards = document.createElement("img");
                 faceCards.class = "cards"
                 faceCards.setAttribute("src", cardDeck[0].img)
                 document.getElementById("dealerCards").appendChild(faceCards);
                 totalDealerCards()
-                dealerCards.splice(cardDeck[0], 1)
-    
         }, 1000)
+        cardDeck.splice(cardDeck[0], 1)
 }
 }, 1000)
 }
@@ -240,6 +237,23 @@ function totalDealerCards() {
         dealerCardTotals += dealerCards[i];
     }
     document.getElementById("dealerTotal").innerText = dealerCardTotals;
+    if (player1CardTotals > dealerCardTotals && player1CardTotals <= 21) {
+        setTimeout(function(){
+            alert(`You win! Congratulations`)
+        },500)
+    } else if (dealerCardTotals > 21 && player1CardTotals <=21) {
+        setTimeout(function(){
+            alert(`You win! Congratulations`)
+        }, 500)
+    } else if (dealerCardTotals === 21 && player1CardTotals === 21){
+        setTimeout(function(){
+            alert(`There has been a tie.`)
+        })
+    } else if (dealerCardTotals === 21 && player1CardTotals !== 21) {
+        setTimeout(function(){
+            alert(`You lose!`)
+        })
+    }
 }
 
 function initialDealerDeal(){
