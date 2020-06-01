@@ -151,40 +151,22 @@ let player1CardTotals = 0;
 let dealerCards = [];
 let dealerCardTotals = 0;
 
-// function showDeck() {
-//     for (let i = 0; i < cardDeck.length; i++) {
-//         let card = document.createElement("img")
-//         card.setAttribute("src", 'images/red_back.png')
-//         card.setAttribute("data-id", i)
-//         card.addEventListener("click", flipcard)
-//         grid.appendChild(card)
-//     }
-// }
-
-// function flipcard(){
-//     let cardId = this.getAttribute("data-id")
-//     player1Cards.push(cardDeck[cardId].value)
-//     this.setAttribute("src", cardDeck[cardId].img)
-
-
-// }
-
-
-// showDeck()
 
 function initialDeal() {
-    // cardDeck = [...cardDeck];
-    for (let i = 0; i < 2; i++) {
+    let i = 0;
+    while (i < 2) {
         player1Cards.push(cardDeck[i].value)
         let faceCards = document.createElement("img")
         faceCards.class = "cards"
         faceCards.setAttribute("src", cardDeck[i].img)
-        console.log(cardDeck[i].img)
         document.getElementById("player1Cards").appendChild(faceCards);
+        i++;
+    }
+    for (let i = 0; i < 2; i++) {
         cardDeck.splice((cardDeck[i]),1)
-        
     }
     totalPlayer1Cards()
+
 }
 
 function hitMe() {
@@ -195,8 +177,8 @@ function hitMe() {
         faceCards.setAttribute("src", cardDeck[i].img)
         document.getElementById("player1Cards").appendChild(faceCards);
         cardDeck.splice((cardDeck[i]),1)
-        totalPlayer1Cards();
     }
+    totalPlayer1Cards();
 }
 
 function totalPlayer1Cards() {
@@ -229,25 +211,27 @@ function stand() {
             totalDealerCards()
             dealerCards.splice(cardDeck[0], 1)
 
-    }, 1000)
+    }, 1000) 
     }
-    if (parseInt(document.getElementById("dealerTotal").innerText) > parseInt(document.getElementById("player1Total").innerText) && parseInt(document.getElementById("dealerTotal").innerText) <= 21) {
-        setTimeout(function(){
-            alert('You lose! Dealer is closer to 21.')
-        },1000)
-    } else if (parseInt(document.getElementById("dealerTotal").innerText) < 21 && (parseInt(document.getElementById("dealerTotal").innerText) <= parseInt(document.getElementById("player1Total").innerText))) {
-        setTimeout(function(){
-            console.log("ST0P")
-            dealerCards.push(cardDeck[0].value)
-            let faceCards = document.createElement("img");
-            faceCards.class = "cards"
-            faceCards.setAttribute("src", cardDeck[0].img)
-            document.getElementById("dealerCards").appendChild(faceCards);
-            totalDealerCards()
-            dealerCards.splice(cardDeck[0], 1)
-
-    }, 1000)
-    }
+    setTimeout(function(){
+        if (parseInt(document.getElementById("dealerTotal").innerText) > parseInt(document.getElementById("player1Total").innerText) && parseInt(document.getElementById("dealerTotal").innerText) <= 21) {
+            setTimeout(function(){
+                alert('You lose! Dealer is closer to 21.')
+            },1000)
+        } else if (parseInt(document.getElementById("dealerTotal").innerText) < 21 && (parseInt(document.getElementById("dealerTotal").innerText) <= parseInt(document.getElementById("player1Total").innerText))) {
+            setTimeout(function(){
+                console.log("ST0P")
+                dealerCards.push(cardDeck[0].value)
+                let faceCards = document.createElement("img");
+                faceCards.class = "cards"
+                faceCards.setAttribute("src", cardDeck[0].img)
+                document.getElementById("dealerCards").appendChild(faceCards);
+                totalDealerCards()
+                dealerCards.splice(cardDeck[0], 1)
+    
+        }, 1000)
+}
+}, 1000)
 }
 
 function totalDealerCards() {
