@@ -196,12 +196,35 @@ function totalPlayer1Cards() {
 
 function stand() {
     initialDealerDeal()
-    dealerLogic();
         setTimeout(function(){
+            if (parseInt(document.getElementById("dealerTotal").innerText) < parseInt(document.getElementById("player1Total").innerText)) {
             dealerLogic();
             totalDealerCards();
-            i++;
-        },1000)
+            console.log(parseInt(document.getElementById("dealerTotal").innerText))
+        }
+        }, 1000)
+        setTimeout(function(){
+            if (parseInt(document.getElementById("dealerTotal").innerText) < parseInt(document.getElementById("player1Total").innerText)) {
+            dealerLogic();
+            totalDealerCards();
+            console.log(parseInt(document.getElementById("dealerTotal").innerText))
+        }
+        }, 2000)
+        setTimeout(function(){
+            if (parseInt(document.getElementById("dealerTotal").innerText) < parseInt(document.getElementById("player1Total").innerText)) {
+            dealerLogic();
+            totalDealerCards();
+            console.log(parseInt(document.getElementById("dealerTotal").innerText))
+        }
+        }, 3000)
+        setTimeout(function(){
+            if (parseInt(document.getElementById("dealerTotal").innerText) < parseInt(document.getElementById("player1Total").innerText)) {
+            dealerLogic();
+            totalDealerCards();
+            console.log(parseInt(document.getElementById("dealerTotal").innerText))
+        }
+        }, 4000)
+
 }
 
 function totalDealerCards() {
