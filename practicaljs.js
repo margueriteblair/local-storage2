@@ -68,15 +68,15 @@ let handlers = {
     addTodo: function() {
         let addTodoTextInput = document.getElementById("addTodoTextInput")
         todoList.addTodo(addTodoTextInput.value);
-        addTodoTextInput = " ";
+        addTodoTextInput.value = "";
         view.displayTodos()
     },
     changeTodo: function() {
         let changeTodoPositionInput = document.getElementById("changeTodoPositionInput")
         let changeTodoTextInput = document.getElementById('changeTodoTextInput');
         todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value)
-        changeTodoPositionInput = " ";
-        changeTodoTextInput = " ";
+        changeTodoPositionInput.value = "";
+        changeTodoTextInput.value = "";
         view.displayTodos()
     },
     deleteTodo: function(position) {
@@ -86,7 +86,7 @@ let handlers = {
     toggleCompleted: function() {
         let toggleCompletedPositionInput = document.getElementById("toggleCompletedPositionInput");
         todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
-        toggleCompletedPositionInput=" ";
+        toggleCompletedPositionInput.valueAsNumber="";
         view.displayTodos();
     }
 }
