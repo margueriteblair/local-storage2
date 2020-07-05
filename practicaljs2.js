@@ -41,6 +41,11 @@ let todoList = {
         let todo = this.todos[position];
         todo.completed = !todo.completed;
         this.displayTodos();
+
+     }
+};
+
+
      },
      toggleAll: function() {
         let totalTodos = this.todos.length;
@@ -64,17 +69,6 @@ let todoList = {
      }
 };
 
-// let displayTodosButton = document.getElementById("displayTodosButton");
-// let toggleAllButton = document.getElementById("toggleAllButton")
-
-// displayTodosButton.addEventListener("click", function() {
-//     todoList.displayTodos();
-
-// })
-
-// toggleAllButton.addEventListener("click", function(){
-//     todoList.toggleAll();
-// })
 
 let handlers = {
     toggleAll: function() {
@@ -164,6 +158,5 @@ view = {
     }
 }
 view.setUpEventListeners();
-
 
 
