@@ -1,7 +1,3 @@
-//place to store todos
-//programming term for a list is an 'array'
-
-
 let todoList = {
     todos: [],
      displayTodos: function() {
@@ -42,15 +38,23 @@ let todoList = {
         todo.completed = !todo.completed;
         this.displayTodos();
 
-     }
-};
-
-
      },
      toggleAll: function() {
         let totalTodos = this.todos.length;
         let completedTodos = 0;
-
+        for (let i = 0; i < totalTodos; i++) {
+            if (this.todos[i].completed === true) {
+                completedTodos++;
+            }
+        }
+        if(completedTodos === totalTodos) {
+            for(let i = 0; i < totalTodos; i++) {
+                this.todos[i].completed = false;
+            }
+        } else {
+            for (let i = 0; i < totalTodos; i++) {
+                this.todos[i].completed = true;   
+            }
         this.todos.forEach(function(todo) {
             if (todo.completed === true) {
                 completedTodos++;
@@ -64,12 +68,11 @@ let todoList = {
             this.todos.forEach(function(todo) {
                 todo.completed=true;
             })
+
         }
         this.displayTodos();
      }
 };
-
-
 let handlers = {
     toggleAll: function() {
         todoList.toggleAll();
@@ -105,22 +108,6 @@ view = {
     displayTodos: function() {
         let todosUl = document.querySelector('ul')
         todosUl.innerHTML = "";
-        // for (let i = 0; i < todoList.todos.length; i++) {
-        //     let todosLi = document.createElement('li');
-        //     let todo = todoList.todos[i];
-        //     let todoTextWithCompletion = "";
-
-        //     if (todo.completed === true) {
-        //         todoTextWithCompletion = "(x)" + todo.todoText;
-        //     } else {
-        //         todoTextWithCompletion = "()" + todo.todoText;
-        //     }
-
-        //     todosLi.id = i;
-        //     todosLi.textContent = todoTextWithCompletion;
-        //     todosLi.appendChild(this.createDeleteButton())
-        //     todosUl.appendChild(todosLi)
-        // }
         todoList.todos.forEach(function(todo, position){
             let todosLi = document.createElement('li');
             let todoTextWithCompletion = "";
